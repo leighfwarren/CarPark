@@ -45,20 +45,4 @@ public class CarParkTest {
         assertEquals(100,parkedCount);
         assertEquals(20,fullCount);
     }
-
-    @org.junit.Test
-    public void placeCarInSpace() {
-    }
-
-    @org.junit.Test
-    public void carLeaves() {
-    }
-
-    @org.junit.Test
-    public void createCarFromRegistration() {
-    }
-
-    @org.junit.Test
-    public void calculateCost() {
-    }
 }
