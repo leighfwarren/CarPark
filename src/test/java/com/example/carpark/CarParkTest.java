@@ -56,8 +56,7 @@ public class CarParkTest {
             carFutureList.add(completableFuture);
         }
 
-        CompletableFuture.allOf(carFutureList.toArray(new CompletableFuture[0]));
-        Thread.sleep(1000);
+        CompletableFuture.allOf(carFutureList.toArray(new CompletableFuture[0])).join();
 
         Method getCarParkStorage = BasicCarPark.class.getDeclaredMethod("getCarParkStorage");
         getCarParkStorage.setAccessible(true);
@@ -83,7 +82,7 @@ public class CarParkTest {
             startTime+=(int)(Math.random()*100);
         }
 
-        CompletableFuture.allOf(carThreadList.toArray(new CompletableFuture[0]));
+        CompletableFuture.allOf(carThreadList.toArray(new CompletableFuture[0])).join();
         AtomicInteger carParkFull = new AtomicInteger();
         AtomicInteger carWasParked = new AtomicInteger();
         carThreadList.forEach(future -> {
