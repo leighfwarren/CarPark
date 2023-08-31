@@ -1,4 +1,4 @@
-**Car Parking App**
+**com.example.carpark.model.Car Parking App**
 
 
 1. When the car comes in, check if there is a space and allocate space if available, otherwise give message saying full.   Let us assume the car park size is 100.

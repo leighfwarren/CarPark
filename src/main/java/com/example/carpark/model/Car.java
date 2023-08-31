@@ -1,4 +1,4 @@
-import java.time.Instant;
+package com.example.carpark.model;
 
 public class Car {
     private final String registrationNumber;
@@ -6,7 +6,7 @@ public class Car {
         this.registrationNumber = registrationNumber;
     }
 
-    protected String getRegistrationNumber() {
+    public String getRegistrationNumber() {
         return registrationNumber;
     }
 
@@ -16,5 +16,10 @@ public class Car {
             return this.registrationNumber.equals(((Car)obj).getRegistrationNumber());
         else
             return false;
+    }
+
+    @Override
+    public String toString() {
+        return registrationNumber;
     }
 }

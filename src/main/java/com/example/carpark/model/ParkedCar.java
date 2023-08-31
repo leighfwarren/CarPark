@@ -1,3 +1,5 @@
+package com.example.carpark.model;
+
 import java.time.Instant;
 
 public class ParkedCar {
