@@ -1,4 +1,4 @@
-package com.example.carpark.service;
+package com.example.carpark.service.impl;
 
 import com.example.carpark.model.Car;
 import com.example.carpark.model.CarParkMessage;
@@ -12,11 +12,11 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class CarParkServiceTest {
+public class BasicCarParkTest {
 
     @org.junit.Test
     public void parkACar() {
-        CarParkService carParkService = new CarParkService();
+        BasicCarPark carParkService = new BasicCarPark();
         String REGISTRATION_NUMBER = "LA71KSE";
         Car car = CarParkUtils.createCarFromRegistration(REGISTRATION_NUMBER);
         CarParkMessage carParkMessage = carParkService.parkCar(car);
@@ -31,7 +31,7 @@ public class CarParkServiceTest {
     public void carParkFull() {
         CarParkStorage mockCarParkStorage = mock(CarParkStorage.class);
         when(mockCarParkStorage.placeCarInStorage(any())).thenReturn(false);
-        CarParkService carParkService = new CarParkService(mockCarParkStorage);
+        BasicCarPark carParkService = new BasicCarPark(mockCarParkStorage);
         String REGISTRATION_NUMBER = "LA71KSE";
         Car car = CarParkUtils.createCarFromRegistration(REGISTRATION_NUMBER);
         CarParkMessage carParkMessage = carParkService.parkCar(car);
@@ -42,7 +42,7 @@ public class CarParkServiceTest {
     public void carParkSpaces() {
         CarParkStorage mockCarParkStorage = mock(CarParkStorage.class);
         when(mockCarParkStorage.placeCarInStorage(any())).thenReturn(true);
-        CarParkService carParkService = new CarParkService(mockCarParkStorage);
+        BasicCarPark carParkService = new BasicCarPark(mockCarParkStorage);
         String REGISTRATION_NUMBER = "LA71KSE";
         Car car = CarParkUtils.createCarFromRegistration(REGISTRATION_NUMBER);
         CarParkMessage carParkMessage = carParkService.parkCar(car);

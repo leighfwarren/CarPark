@@ -2,8 +2,8 @@ package com.example.carpark.utils;
 
 import com.example.carpark.model.Car;
 import com.example.carpark.model.CarParkMessage;
-import com.example.carpark.service.CarParkService;
-import com.example.carpark.service.CarParkStorage;
+import com.example.carpark.service.impl.BasicCarPark;
+import com.example.carpark.service.impl.CarParkStorage;
 import org.junit.Assert;
 
 import java.lang.reflect.InvocationTargetException;
@@ -28,7 +28,7 @@ public class CarParkTestUtils {
                 .toString();
     }
 
-    public static Optional<CarParkMessage> parkACarAndWaitToLeave(int startTime, CarParkService carParkService)  {
+    public static Optional<CarParkMessage> parkACarAndWaitToLeave(int startTime, BasicCarPark carParkService)  {
         Optional<CarParkMessage> carParkMessage;
         Car car = CarParkUtils.createCarFromRegistration(CarParkTestUtils.makeRandomRegistrationNumber());
         try {
@@ -42,7 +42,7 @@ public class CarParkTestUtils {
                 log("car: "+car+" leave time: "+leaveSleepTime);
                 Thread.sleep(leaveSleepTime);
                 Optional<BigDecimal> cost = carParkService.carLeaves(car);
-                Method getCarParkStorage = CarParkService.class.getDeclaredMethod("getCarParkStorage");
+                Method getCarParkStorage = BasicCarPark.class.getDeclaredMethod("getCarParkStorage");
                 getCarParkStorage.setAccessible(true);
                 CarParkStorage carParkStorage = (CarParkStorage) getCarParkStorage.invoke(carParkService);
                 log("cars left = "+carParkStorage.getSpacesUsed());
@@ -55,7 +55,7 @@ public class CarParkTestUtils {
         return carParkMessage;
     }
 
-    public static Optional<CarParkMessage> parkCar(CarParkService carParkService) {
+    public static Optional<CarParkMessage> parkCar(BasicCarPark carParkService) {
         Optional<CarParkMessage> carParkMessage;
         Car car = CarParkUtils.createCarFromRegistration(CarParkTestUtils.makeRandomRegistrationNumber());
         int sleepTime = (int) Math.floor(1000 * new Random().nextDouble());

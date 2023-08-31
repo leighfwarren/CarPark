@@ -1,4 +1,4 @@
-package com.example.carpark.service;
+package com.example.carpark.service.impl;
 
 import com.example.carpark.model.Car;
 import com.example.carpark.model.ParkedCar;
